@@ -110,4 +110,3 @@ public abstract class Feedback {
 		this.tipFeedback = tipFeedback;
 	}
 }
-	
