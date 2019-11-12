@@ -12,6 +12,7 @@ public class Atasament {
 	public Integer getIdAtasament() {
 		return idAtasament;
 	}
+	///test commit
 	public void setIdAtasament(Integer idAtasament) {
 		this.idAtasament = idAtasament;
 	}
