@@ -1,5 +1,7 @@
 package CustomerF;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public abstract class Feedback {
 	private Integer idFeedback;
@@ -11,9 +13,9 @@ public abstract class Feedback {
 	private String titlu;
 	private String descriere;
 	private String tipFeedback;
-	private List<Comentariu> listaComentarii= new ArrayList<Comentariu>;
-	private List<Atasament> listaAtasamente = new ArrayList<Atasament>;
-	private List<Cerinta> listaCerinte= new ArrayList<Cerinta>;
+	private List<Comentariu> listaComentarii= new ArrayList<Comentariu>();
+	private List<Atasament> listaAtasamente = new ArrayList<Atasament>();
+	private List<Cerinta> listaCerinte= new ArrayList<Cerinta>();
 	
 
 
@@ -107,5 +109,5 @@ public abstract class Feedback {
 		this.descriere = descriere;
 		this.tipFeedback = tipFeedback;
 	}
-	
+}
 	
