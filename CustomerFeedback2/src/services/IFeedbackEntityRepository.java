@@ -9,8 +9,8 @@ public interface IFeedbackEntityRepository {
 	
 	public Integer getNextID() ;
 	
-	//Feedback 
-	public Feedback getFeedbackById(Integer id);
+	//
+	public Feedback getFeedbackById(Integer idFeedback);
 	public Feedback getFeedback(Feedback sample);
 	public Collection<Feedback> feedbackToCollection(); // getAll
 	
