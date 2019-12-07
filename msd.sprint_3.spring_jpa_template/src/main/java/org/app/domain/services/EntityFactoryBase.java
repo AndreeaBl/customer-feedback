@@ -26,25 +26,43 @@ public class EntityFactoryBase implements IEntityFactory {
 	}
 	
 	@Override
-	public RootEntity buildAggregate(String name, Date startDate) {
-		logger.info(">>> Service: EntityFactoryBase :: buildAggregate.");
+	public Feedback feedbackAtasamente (Integer idFeedback, Status status, Proiect proiect, User user, Date dataInregistrare, Date deadline,
+			String titlu, String descriere, String tipFeedback, List<Atasament> listaAtasamente) {
+		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu Atasamente.");
 		//
-		RootEntity rootEntity = new RootEntity(1, name, startDate);
-		List<ComponentEntity> components = new ArrayList<>();
-		ComponentEntity component = new ComponentEntity(1, "R: " + rootEntity.getRootName() + "." + 1, rootEntity);
-		components.add(component);
-		rootEntity.setComponents(components);
-		return rootEntity;
+		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
+		List<Atasament> atasamente = new ArrayList<>();
+		///Modifica crearea atasamnetului
+		Atasament atasament = new Atasament(1, "R: " + feedback.getRootName() + "." + 1, feedback);
+		atasamente.add(atasament);
+		feedback.setAtasamente(atasamente);
+		return feedback;
 	}
 	
-	@PostConstruct
 	@Override
-	public void initDomainServiceEntities() {
-		logger.info(">> PostConstruct :: initDomainServiceEntities");
-		for(int i=1; i<=3; i++) {
-			RootEntity newEntity = buildAggregate("Project_" + i, new Date());
-			entityRepository.save(newEntity);
-		}
-		logger.info(">> EntityRepository entity.count :: " + entityRepository.count());
+	public Feedback feedbackComentarii (Integer idFeedback, Status status, Proiect proiect, User user, Date dataInregistrare, Date deadline,
+			String titlu, String descriere, String tipFeedback, List<Comentariu> listaComentarii) {
+		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu Atasamente.");
+		//
+		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
+		List<Comentariu> comentarii = new ArrayList<>();
+		///Modifica crearea comentariului
+		Comentariu comentariu = new Comentariu(1, "R: " + feedback.getRootName() + "." + 1, feedback);
+		comentarii.add(comentariu);
+		feedback.setComentarii(comentarii);
+		return feedback;
 	}
-}
+	
+	@Override
+	public Feedback feedbackCerinte (Integer idFeedback, Status status, Proiect proiect, User user, Date dataInregistrare, Date deadline,
+			String titlu, String descriere, String tipFeedback, List<Cerinta> listaCerinte) {
+		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu Atasamente.");
+		//
+		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
+		List<Cerinta> cerinte = new ArrayList<>();
+		///Modifica crearea cerintei
+		Cerinta cerinta = new Cerinta(1, "R: " + feedback.getRootName() + "." + 1, feedback);
+		cerinte.add(cerinta);
+		feedback.setCerintei(cerinte);
+		return feedback;
+	}
