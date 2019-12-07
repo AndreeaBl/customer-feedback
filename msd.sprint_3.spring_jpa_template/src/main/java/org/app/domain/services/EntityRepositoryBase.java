@@ -104,7 +104,7 @@ public class EntityRepositoryBase implements IEntityRepository{
 	}
 
 	
-	//Echipe
+	//Useri
 	private Collection<User> listaUseri = new ArrayList<User>();
 	
 	@Override
@@ -170,7 +170,17 @@ public class EntityRepositoryBase implements IEntityRepository{
 		
 		return flag;
 	}
-
+	
+	//Atasamente
+	
+	private Collection<Atasament> listaAtasamente = new ArrayList<Atasament>();
+	
+	@Override
+	public int sizeOfAtasamente() {
+		listaAtasamente = atasamentToCollection();
+		return listaAtasamente.size();
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Atasament> getAtasamentByFeedbackId(Integer id) {
@@ -205,134 +215,202 @@ public class EntityRepositoryBase implements IEntityRepository{
 
 	@Override
 	public Collection<Atasament> addAllAtasamentToFeedback(Collection<Atasament> entities, Feedback feedback) {
-		
-		return null;
+		for(Atasament entity: entities)
+			this.addAtasamentToFeedback(entity, feedback);
+		return entities;
 	}
 
 	@Override
 	public boolean removeAtasament(Atasament entity) {
-		// TODO Auto-generated method stub
+		if(em.contains(entity)) {
+			this.em.remove(entity);
+			return true;
+		}
 		return false;
 	}
 
 	@Override
-	public boolean removeAllAtasamentOfFeedback(Collection<Atasament> entities, Feedback feedback) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean removeAllAtasamentOfFeedback(Feedback feedback) {
+		Boolean flag =  true;
+		Collection<Atasament> entities = getAtasamentByFeedbackId(feedback.getIdFeedback());
+		
+		for(Atasament entity: entities) {
+			if (!this.removeAtasament(entity))
+				flag = false;
+		}
+		
+		return flag;
 	}
 
 	@Override
 	public boolean removeAllAtasament(Collection<Atasament> entities) {
-		// TODO Auto-generated method stub
-		return false;
+		Boolean flag =  true;
+		for(Atasament entity: entities) {
+			if (!this.removeAtasament(entity))
+				flag = false;
+		}
+		return flag;
 	}
 
+	//Cerinte
+	
+	private Collection<Cerinta> listaCerinte = new ArrayList<Cerinta>();
+		
+	@Override
+	public int sizeOfCerinte() {
+		listaCerinte = cerintaToCollection();
+		return listaCerinte.size();
+	}	
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Cerinta> getCerintaByFeedbackId(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		String queryString = "Select a FROM Cerinta a WHERE a.Feedback=" + id;
+		Query query = em.createQuery(queryString, Cerinta.class);
+		return query.getResultList();
 	}
 
 	@Override
 	public Cerinta getCerintaById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Cerinta.class, id);
 	}
 
 	@Override
 	public Cerinta getCerinta(Cerinta sample) {
-		// TODO Auto-generated method stub
-		return null;
+		return getCerintaById(sample.getIdCerinta());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Cerinta> cerintaToCollection() {
-		// TODO Auto-generated method stub
-		return null;
+		String queryString = "SELECT a FROM Cerinta a";
+		Query query = em.createQuery(queryString);
+		return query.getResultList();
 	}
 
 	@Override
-	public Cerinta addCerinteToFeedback(Cerinta entity, Feedback feedback) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cerinta addCerintaToFeedback(Cerinta entity, Feedback feedback) {
+		entity.setFeedback(feedback);
+		return em.merge(entity);
 	}
 
 	@Override
 	public Collection<Cerinta> addAllCerintaToFeedback(Collection<Cerinta> entities, Feedback feedback) {
-		// TODO Auto-generated method stub
-		return null;
+		for(Cerinta entity: entities)
+			this.addCerintaToFeedback(entity, feedback);
+		return entities;
 	}
 
 	@Override
 	public boolean removeCerinta(Cerinta entity) {
-		// TODO Auto-generated method stub
+		if(em.contains(entity)) {
+			this.em.remove(entity);
+			return true;
+		}
 		return false;
 	}
 
 	@Override
-	public boolean removeAllCerinteOfFeedback(Collection<Cerinta> entities, Feedback feedback) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean removeAllCerinteOfFeedback(Feedback feedback) {
+		Boolean flag =  true;
+		Collection<Cerinta> entities = getCerintaByFeedbackId(feedback.getIdFeedback());
+		
+		for(Cerinta entity: entities) {
+			if (!this.removeCerinta(entity))
+				flag = false;
+		}
+		return flag;
 	}
 
 	@Override
 	public boolean removeAllCerinte(Collection<Cerinta> entities) {
-		// TODO Auto-generated method stub
-		return false;
+		Boolean flag =  true;
+		for(Cerinta entity: entities) {
+			if (!this.removeCerinta(entity))
+				flag = false;
+		}
+		return flag;
 	}
 
+	
+	//Comentarii
+	
+	private Collection<Comentariu> listaComentarii = new ArrayList<Comentariu>();
+		
+	@Override
+	public int sizeOfComentarii() {
+		listaComentarii = comentariuToCollection();
+		return listaComentarii.size();
+	}
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Comentariu> getComentariiByFeedbackId(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		String queryString = "Select a FROM Comentariu a WHERE a.Feedback=" + id;
+		Query query = em.createQuery(queryString, Comentariu.class);
+		return query.getResultList();
 	}
 
 	@Override
 	public Comentariu getComentariuById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Comentariu.class, id);
 	}
 
 	@Override
 	public Comentariu getComentariu(Comentariu sample) {
-		// TODO Auto-generated method stub
-		return null;
+		return getComentariuById(sample.getIdComentariu());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Comentariu> comentariuToCollection() {
-		// TODO Auto-generated method stub
-		return null;
+		String queryString = "SELECT a FROM Comentariu a";
+		Query query = em.createQuery(queryString);
+		return query.getResultList();
 	}
 
 	@Override
-	public Comentariu addComentariuToFeedback(Cerinta entity, Feedback feedback) {
-		// TODO Auto-generated method stub
-		return null;
+	public Comentariu addComentariuToFeedback(Comentariu entity, Feedback feedback) {
+		entity.setFeedback(feedback);
+		return em.merge(entity);
 	}
 
 	@Override
-	public Collection<Comentariu> addAllComenatiiToFeedback(Collection<Cerinta> entities, Feedback feedback) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<Comentariu> addAllComenatiiToFeedback(Collection<Comentariu> entities, Feedback feedback) {
+		for(Comentariu entity: entities)
+			this.addComentariuToFeedback(entity, feedback);
+		return entities;
 	}
 
 	@Override
 	public boolean removeComentariu(Comentariu entity) {
-		// TODO Auto-generated method stub
+		if(em.contains(entity)) {
+			this.em.remove(entity);
+			return true;
+		}
 		return false;
 	}
 
 	@Override
-	public boolean removeAllComenariiOfFeedback(Collection<Cerinta> entities, Feedback feedback) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean removeAllComenariiOfFeedback(Feedback feedback) {
+		Boolean flag =  true;
+		Collection<Comentariu> entities = getComentariiByFeedbackId(feedback.getIdFeedback());
+		
+		for(Comentariu entity: entities) {
+			if (!this.removeComentariu(entity))
+				flag = false;
+		}
+		return flag;
 	}
 
 	@Override
-	public boolean removeAllComentarii(Collection<Cerinta> entities) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean removeAllComentarii(Collection<Comentariu> entities) {
+		Boolean flag =  true;
+		for(Comentariu entity: entities) {
+			if (!this.removeComentariu(entity))
+				flag = false;
+		}
+		return flag;
 	}
 
 }

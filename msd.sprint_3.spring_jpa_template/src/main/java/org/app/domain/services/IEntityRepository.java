@@ -46,7 +46,7 @@ public interface IEntityRepository {
 	public Atasament addAtasamentToFeedback(Atasament entity, Feedback feedback);
 	public Collection<Atasament> addAllAtasamentToFeedback(Collection<Atasament> entities, Feedback feedback);
 	public boolean removeAtasament(Atasament entity);
-	public boolean removeAllAtasamentOfFeedback(Collection<Atasament> entities, Feedback feedback);
+	public boolean removeAllAtasamentOfFeedback(Feedback feedback);
 	public boolean removeAllAtasament(Collection<Atasament> entities);
 	
 	//Cerinte
@@ -56,10 +56,10 @@ public interface IEntityRepository {
 	public Collection<Cerinta> cerintaToCollection(); // getAll
 	
 	//Cerinte
-	public Cerinta addCerinteToFeedback(Cerinta entity, Feedback feedback);
+	public Cerinta addCerintaToFeedback(Cerinta entity, Feedback feedback);
 	public Collection<Cerinta> addAllCerintaToFeedback(Collection<Cerinta> entities, Feedback feedback);
 	public boolean removeCerinta(Cerinta entity);
-	public boolean removeAllCerinteOfFeedback(Collection<Cerinta> entities, Feedback feedback);
+	public boolean removeAllCerinteOfFeedback(Feedback feedback);
 	public boolean removeAllCerinte(Collection<Cerinta> entities);
 	
 	//Comentarii
@@ -69,11 +69,11 @@ public interface IEntityRepository {
 	public Collection<Comentariu> comentariuToCollection(); // getAll
 		
 	//Comentarii
-	public Comentariu addComentariuToFeedback(Cerinta entity, Feedback feedback);
-	public Collection<Comentariu> addAllComenatiiToFeedback(Collection<Cerinta> entities, Feedback feedback);
+	public Comentariu addComentariuToFeedback(Comentariu entity, Feedback feedback);
+	public Collection<Comentariu> addAllComenatiiToFeedback(Collection<Comentariu> entities, Feedback feedback);
 	public boolean removeComentariu(Comentariu entity);
-	public boolean removeAllComenariiOfFeedback(Collection<Cerinta> entities, Feedback feedback);
-	public boolean removeAllComentarii(Collection<Cerinta> entities);	
+	public boolean removeAllComenariiOfFeedback(Feedback feedback);
+	public boolean removeAllComentarii(Collection<Comentariu> entities);	
 	
 	
 	//
