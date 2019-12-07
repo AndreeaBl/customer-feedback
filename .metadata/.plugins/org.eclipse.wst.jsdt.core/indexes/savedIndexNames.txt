@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+C:\Users\Oana\git\customer-feedback\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+486056232.index
+2622507383.index
+2019990008.index
+887169545.index
+1563156040.index
