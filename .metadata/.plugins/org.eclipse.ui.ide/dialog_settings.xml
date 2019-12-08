@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="F:\stick Oana\Master\Anul 1\Sem 2\Multistrat\proiect+jpa"/>
+	</list>
 	<section name="ExternalProjectImportWizard">
 		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="F:\stick Oana\Master\Anul 1\Sem 2\Multistrat\proiect+jpa"/>
 			<item value="C:\Users\Oana\git\customer-feedback\CustomerFeedback2"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">

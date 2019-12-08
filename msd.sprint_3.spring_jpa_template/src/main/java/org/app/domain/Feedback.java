@@ -46,6 +46,36 @@ public class Feedback {
 			orphanRemoval = true)
 	private List<Cerinta> listaCerinte= new ArrayList<Cerinta>();
 	
+	protected Integer comentariuCount = 0;
+	
+	protected Integer atasamentCount = 0;
+	
+	protected Integer cerintaCount = 0;
+	
+
+	public Integer getComentariuCount() {
+		return comentariuCount;
+	}
+
+	public void setComentariuCount(Integer comentariuCount) {
+		this.comentariuCount = comentariuCount;
+	}
+
+	public Integer getAtasamentCount() {
+		return atasamentCount;
+	}
+
+	public void setAtasamentCount(Integer atasamentCount) {
+		this.atasamentCount = atasamentCount;
+	}
+
+	public Integer getCerintaCount() {
+		return cerintaCount;
+	}
+
+	public void setCerintaCount(Integer cerintaCount) {
+		this.cerintaCount = cerintaCount;
+	}
 
 	public Feedback(Integer idFeedback, Status status, Proiect proiect, User user, Date dataInregistrare, Date deadline,
 			String titlu, String descriere, String tipFeedback, List<Comentariu> listaComentarii,
@@ -161,4 +191,15 @@ public class Feedback {
 		this.descriere = descriere;
 		this.tipFeedback = tipFeedback;
 	}
+
+	@Override
+	public String toString() {
+		return "Feedback [idFeedback=" + idFeedback + ", status=" + status + ", proiect=" + proiect + ", user=" + user
+				+ ", dataInregistrare=" + dataInregistrare + ", deadline=" + deadline + ", titlu=" + titlu
+				+ ", descriere=" + descriere + ", tipFeedback=" + tipFeedback + ", listaComentarii=" + listaComentarii
+				+ ", listaAtasamente=" + listaAtasamente + ", listaCerinte=" + listaCerinte + ", comentariuCount="
+				+ comentariuCount + ", atasamentCount=" + atasamentCount + ", cerintaCount=" + cerintaCount + "]";
+	}
+	
+	
 }
