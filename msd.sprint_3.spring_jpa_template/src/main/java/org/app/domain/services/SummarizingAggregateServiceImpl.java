@@ -3,6 +3,7 @@ package org.app.domain.services;
 import java.util.logging.Logger;
 
 import org.app.domain.RootEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.app.domain.Feedback;
 
@@ -14,34 +15,36 @@ import org.app.domain.Feedback;
 public class SummarizingAggregateServiceImpl implements ISummarizingAggregateService {
 	private static Logger logger = Logger.getLogger(SummarizingAggregateServiceImpl.class.getName());
 	//
-	@Override
-	public RootEntity countingComponents(RootEntity rootEntity) {
-		logger.info(">>> Service: SummarizingAggregateServiceImpl :: countingComponents.");
-		Integer componentsCount = (rootEntity.getComponents() == null) ? 0 : rootEntity.getComponents().size();
-		rootEntity.setComponentsCount(componentsCount);
-		return rootEntity;
-	}
 	
+	@Autowired
+	public IEntityRepository er;
+	
+	//Numaram comentariile unui feedback
 	@Override
 	public Feedback countingComentarii(Feedback feedback) {
 		logger.info(">>> Service: SummarizingAggregateServiceImpl :: countingComentarii.");
-		Integer comentariuCount = (feedback.getListaComentarii() == null) ? 0 : feedback.getListaComentarii().size();
+		Integer id = feedback.getIdFeedback();
+		Integer comentariuCount = (er.getComentariiByFeedbackId(id) == null) ? 0 : er.getComentariiByFeedbackId(id).size();
 		feedback.setComentariuCount(comentariuCount);
 		return feedback;
 	}
 	
+	//Numaram atasamentele unui feedback
 	@Override
 	public Feedback countingAtasamente(Feedback feedback) {
 		logger.info(">>> Service: SummarizingAggregateServiceImpl :: countingAtasamente.");
-		Integer atasamentCount = (feedback.getListaAtasamente() == null) ? 0 : feedback.getListaAtasamente().size();
+		Integer id = feedback.getIdFeedback();
+		Integer atasamentCount = (er.getAtasamentByFeedbackId(id) == null) ? 0 : er.getAtasamentByFeedbackId(id).size();
 		feedback.setAtasamentCount(atasamentCount);
 		return feedback;
 	}
 	
+	//Numaram cerintele unui feedback
 	@Override
 	public Feedback countingCerinte(Feedback feedback) {
 		logger.info(">>> Service: SummarizingAggregateServiceImpl :: countingCerinte.");
-		Integer cerintaCount = (feedback.getListaCerinte() == null) ? 0 : feedback.getListaCerinte().size();
+		Integer id = feedback.getIdFeedback();
+		Integer cerintaCount = (er.getCerintaByFeedbackId(id) == null) ? 0 : er.getCerintaByFeedbackId(id).size();
 		feedback.setCerintaCount(cerintaCount);
 		return feedback;
 	} 
