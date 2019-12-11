@@ -31,13 +31,7 @@ public class EntityFactoryBase implements IEntityFactory {
 		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu Atasament.");
 		//
 		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
-		
-		List<Atasament> atasamente = new ArrayList<>();
-		Integer nextID = this.entityRepository.getNextID();
-		///Modifica crearea atasamentului
-		Atasament atasament = new Atasament(nextID, "R: " + feedback.getRootName() + "." + 1, feedback);
-		atasamente.add(atasament);
-		feedback.setAtasamente(atasamente);
+		Atasament addAtasamentToFeedback(Atasament entity, Feedback feedback);
 		return feedback;
 	}
 	
@@ -47,13 +41,7 @@ public class EntityFactoryBase implements IEntityFactory {
 		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu Atasamente.");
 		//
 		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
-		
-		List<Atasament> atasamente = new ArrayList<>();
-		///Modifica crearea atasamentului
-		for(Integer IdAtasamnet: IduriAtasamente) {
-			atasamente.add(new Atasament(IdAtasament, "R: " + feedback.getRootName() + "." + 1, feedback);
-		}
-		feedback.setAtasamente(atasamente);
+		Collection<Atasament> addAllAtasamentToFeedback(Collection<Atasament> entities, Feedback feedback);
 		return feedback;
 	}
 	
@@ -63,13 +51,7 @@ public class EntityFactoryBase implements IEntityFactory {
 		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu Comentariu.");
 		//
 		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
-		List<Comentariu> comentarii = new ArrayList<>();
-		
-		Integer nextID = this.entityRepository.getNextID();
-		///Modifica crearea comentariului
-		Comentariu comentariu = new Comentariu(nextID, "R: " + feedback.getRootName() + "." + 1, feedback);
-		comentarii.add(comentariu);
-		feedback.setComentarii(comentarii);
+		Comentariu addComentariuToFeedback(Cerinta entity, Feedback feedback);
 		return feedback;
 	}
 	
@@ -79,13 +61,7 @@ public class EntityFactoryBase implements IEntityFactory {
 		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu comenatrii.");
 		//
 		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
-		
-		List<Comentariu> comentarii = new ArrayList<>();
-		///Modifica crearea comentariului
-		for(Integer IdComenatriu: IduriComentarii) {
-			comentarii.add( new Comentariu(IdComenatriu, "R: " + feedback.getRootName() + "." + 1, feedback);
-		}
-		feedback.setComentarii(comentarii);
+		 Collection<Comentariu> addAllComenatiiToFeedback(Collection<Cerinta> entities, Feedback feedback);
 		return feedback;
 	}
 	
@@ -95,12 +71,7 @@ public class EntityFactoryBase implements IEntityFactory {
 		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu cerinta.");
 		//
 		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
-		List<Cerinta> cerinte = new ArrayList<>();
-		///Modifica crearea cerintei
-		Integer nextID = this.entityRepository.getNextID();
-		Cerinta cerinta = new Cerinta(nextID, "R: " + feedback.getRootName() + "." + 1, feedback);
-		cerinte.add(cerinta);
-		feedback.setCerintei(cerinte);
+		Cerinta addCerinteToFeedback(Cerinta entity, Feedback feedback);
 		return feedback;
 	}
 
@@ -110,13 +81,19 @@ public class EntityFactoryBase implements IEntityFactory {
 		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu ccerinte.");
 		//
 		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
-		
-		List<Cerinta> cerinte = new ArrayList<>();
-		///Modifica crearea cerintei
-		for(Integer IdCerinta: IduriCerinte) {
-			cerinte.add( new Cerinta(IdCerinta, "R: " + feedback.getRootName() + "." + 1, feedback);
-		}
-		feedback.setCerintei(cerinte);
+		Collection<Cerinta> addAllCerintaToFeedback(Collection<Cerinta> entities, Feedback feedback);
 		return feedback;
+	}
+	
+	
+	@PostConstruct
+	@Override
+	public void initDomainServiceEntities() {
+		logger.info(">> PostConstruct :: initDomainServiceEntities");
+		for(int i=1; i<=3; i++) {
+			RootEntity newEntity = buildAggregate("Project_" + i, new Date());
+			entityRepository.save(newEntity);
+		}
+		logger.info(">> EntityRepository entity.count :: " + entityRepository.count());
 	}
 	
