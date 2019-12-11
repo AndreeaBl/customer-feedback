@@ -31,17 +31,18 @@ public class EntityFactoryBase implements IEntityFactory {
 		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu Atasament.");
 		//
 		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
-		Atasament addAtasamentToFeedback(Atasament entity, Feedback feedback);
+		Atasament atasament = new Atasament(id, now());
+		Atasament addAtasamentToFeedback(atasament, feedback);
 		return feedback;
 	}
 	
 	@Override
 	public Feedback feedbackXAtasamente (Integer idFeedback, Status status, Proiect proiect, User user, Date dataInregistrare, Date deadline,
-			String titlu, String descriere, String tipFeedback, List<Integer> IduriAtasamente) {
+			String titlu, String descriere, String tipFeedback, Collection<Atasamnete> atasamente) {
 		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu Atasamente.");
 		//
 		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
-		Collection<Atasament> addAllAtasamentToFeedback(Collection<Atasament> entities, Feedback feedback);
+		Collection<Atasament> addAllAtasamentToFeedback(atasamente, feedback);
 		return feedback;
 	}
 	
@@ -51,17 +52,18 @@ public class EntityFactoryBase implements IEntityFactory {
 		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu Comentariu.");
 		//
 		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
-		Comentariu addComentariuToFeedback(Cerinta entity, Feedback feedback);
+		Comentariu comentariu = new Comentariu(id, now());
+		Comentariu addComentariuToFeedback(comentariu, feedback);
 		return feedback;
 	}
 	
 	@Override
 	public Feedback feedbackXComentarii (Integer idFeedback, Status status, Proiect proiect, User user, Date dataInregistrare, Date deadline,
-			String titlu, String descriere, String tipFeedback, List<Integer> IduriComentarii) {
+			String titlu, String descriere, String tipFeedback, Collection<Comentariu> comentarii) {
 		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu comenatrii.");
 		//
 		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
-		 Collection<Comentariu> addAllComenatiiToFeedback(Collection<Cerinta> entities, Feedback feedback);
+		 Collection<Comentariu> addAllComenatiiToFeedback( comentarii, feedback);
 		return feedback;
 	}
 	
@@ -71,16 +73,17 @@ public class EntityFactoryBase implements IEntityFactory {
 		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu cerinta.");
 		//
 		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
-		Cerinta addCerinteToFeedback(Cerinta entity, Feedback feedback);
+		Cerinta cerinta = new Cerinta(id, now());
+		Cerinta addCerinteToFeedback(cerinta, feedback);
 		return feedback;
 	}
 
 	@Override
 	public Feedback feedbackXCerinte (Integer idFeedback, Status status, Proiect proiect, User user, Date dataInregistrare, Date deadline,
-			String titlu, String descriere, String tipFeedback, List<Integer> IduriCerinte) {
+			String titlu, String descriere, String tipFeedback, Collection<Cerinta> cerinte) {
 		logger.info(">>> Service: EntityFactoryBase :: creare Feedback cu ccerinte.");
 		//
 		Feedback feedback = new Feedback(name, status, proiect,user, dataInregistrare, title, descriere, tipFeedback);
-		Collection<Cerinta> addAllCerintaToFeedback(Collection<Cerinta> entities, Feedback feedback);
+		Collection<Cerinta> addAllCerintaToFeedback(cerinte, feedback);
 		return feedback;
 	}
