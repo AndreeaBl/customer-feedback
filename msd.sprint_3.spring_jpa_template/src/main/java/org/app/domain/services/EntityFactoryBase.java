@@ -84,16 +84,3 @@ public class EntityFactoryBase implements IEntityFactory {
 		Collection<Cerinta> addAllCerintaToFeedback(Collection<Cerinta> entities, Feedback feedback);
 		return feedback;
 	}
-	
-	
-	@PostConstruct
-	@Override
-	public void initDomainServiceEntities() {
-		logger.info(">> PostConstruct :: initDomainServiceEntities");
-		for(int i=1; i<=3; i++) {
-			RootEntity newEntity = buildAggregate("Project_" + i, new Date());
-			entityRepository.save(newEntity);
-		}
-		logger.info(">> EntityRepository entity.count :: " + entityRepository.count());
-	}
-	
