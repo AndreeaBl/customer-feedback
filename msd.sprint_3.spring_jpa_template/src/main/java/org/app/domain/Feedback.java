@@ -39,10 +39,10 @@ public class Feedback {
 	@OneToMany(mappedBy="feedback", cascade = CascadeType.ALL, fetch = FetchType.EAGER,
 			orphanRemoval = true)
 	private List<Comentariu> listaComentarii= new ArrayList<Comentariu>();
-	@OneToMany(mappedBy="feedback", cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+	@OneToMany(mappedBy="feedback", cascade = CascadeType.ALL, fetch = FetchType.LAZY,
 			orphanRemoval = true)
 	private List<Atasament> listaAtasamente = new ArrayList<Atasament>();
-	@OneToMany(mappedBy="feedback", cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+	@OneToMany(mappedBy="feedback", cascade = CascadeType.ALL, fetch = FetchType.LAZY,
 			orphanRemoval = true)
 	private List<Cerinta> listaCerinte= new ArrayList<Cerinta>();
 	

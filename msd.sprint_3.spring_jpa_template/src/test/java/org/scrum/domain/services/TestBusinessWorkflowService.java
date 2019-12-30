@@ -32,13 +32,13 @@ public class TestBusinessWorkflowService {
 		
 		Date tomorow = new Date(new Date().getTime() + 1000*60*60*24*1);
 		// 1.
-		Integer rootId = businessWorkflowService.startWorkflow("Aggregate.Test", tomorow);
+		//Integer rootId = businessWorkflowService.startWorkflow("Aggregate.Test", tomorow);
 		// 2...
-		businessWorkflowService.updateAggregate(rootId);
+		//businessWorkflowService.updateAggregate(rootId);
 		// 2.
-		AggregateView viewData = businessWorkflowService.getAggregateSummaryData(rootId);
+		//AggregateView viewData = businessWorkflowService.getAggregateSummaryData(rootId);
 		// 
-		logger.info(viewData.toString());
+		//logger.info(viewData.toString());
 		
 	}
 	
@@ -54,12 +54,12 @@ public class TestBusinessWorkflowService {
 		
 		Date tomorow = new Date(new Date().getTime() + 1000*60*60*24*1);
 		// 1.
-		Integer rootId = auditedBusinessWorkflowService.startWorkflow("Aggregate.Test", tomorow);
+		//Integer rootId = auditedBusinessWorkflowService.startWorkflow("Aggregate.Test", tomorow);
 		// 2...
-		auditedBusinessWorkflowService.updateAggregate(rootId);
+		//auditedBusinessWorkflowService.updateAggregate(rootId);
 		// 2.
-		AggregateView viewData = auditedBusinessWorkflowService.getAggregateSummaryData(rootId);
+		//AggregateView viewData = auditedBusinessWorkflowService.getAggregateSummaryData(rootId);
 		// 
-		logger.info(viewData.toString());
+		//logger.info(viewData.toString());
 	}
 }

@@ -24,6 +24,4 @@ public interface IAggregateRepositorySpringData
 	@Query("SELECT r FROM Feedback r WHERE r.titlu like %:fname%")
 	List<Feedback> findByName(@Param("fname") String titlu);
 	
-	
-	
 }

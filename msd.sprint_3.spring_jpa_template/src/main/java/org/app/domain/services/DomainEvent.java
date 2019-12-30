@@ -1,23 +1,23 @@
 package org.app.domain.services;
 
-import org.app.domain.RootEntity;
+import org.app.domain.Feedback;
 import org.springframework.context.ApplicationEvent;
 
 public class DomainEvent extends ApplicationEvent{
 	private static final long serialVersionUID = 1L;
 	//
-	private RootEntity message;
+	private Feedback message;
 	
 	public DomainEvent(Object source) {
 		super(source);
 	}
 
-	public DomainEvent(Object source, RootEntity message) {
+	public DomainEvent(Object source, Feedback message) {
 		super(source);
 		this.message = message;
 	}
 	
-	public RootEntity getMessage() {
+	public Feedback getMessage() {
 		return message;
 	}
 }

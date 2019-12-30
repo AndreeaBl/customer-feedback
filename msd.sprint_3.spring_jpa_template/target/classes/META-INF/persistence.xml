@@ -5,21 +5,32 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="MSD_LOCAL" transaction-type="RESOURCE_LOCAL">
 		<!-- <provider>org.hibernate.ejb.HibernatePersistence</provider> -->
-		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider> 
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>org.app.domain.Atasament</class>
+		<class>org.app.domain.Bug</class>
+		<class>org.app.domain.Cerinta</class>
+		<class>org.app.domain.Comentariu</class>
+		<class>org.app.domain.ComponentEntity</class>
+		<class>org.app.domain.Echipa</class>
+		<class>org.app.domain.Feedback</class>
+		<class>org.app.domain.Imbunatatire</class>
+		<class>org.app.domain.Proiect</class>
+		<class>org.app.domain.RootEntity</class>
+		<class>org.app.domain.Status</class>
+		<class>org.app.domain.User</class> 
 		<exclude-unlisted-classes>false</exclude-unlisted-classes> 
 		<properties>
-			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 			
-			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@10.10.0.17:1521:ORCL" />
-			<!-- <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE" /> -->
-			<!-- <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@//localhost:1521/ORCL" /> -->
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/customer-feedback" />
+		
 			<property name="javax.persistence.validation.mode" value="none" />
 			
-			<property name="javax.persistence.jdbc.user" value="msd" />
-			<property name="javax.persistence.jdbc.password" value="msd" />
+			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.password" value="SL169009IE" />
 			
-			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
-			
+			<!-- <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />  -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<!-- <property name="hibernate.hbm2ddl.auto" value="" /> -->
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<!-- <property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->

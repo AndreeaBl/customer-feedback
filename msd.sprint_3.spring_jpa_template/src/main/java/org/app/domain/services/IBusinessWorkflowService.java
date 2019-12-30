@@ -3,6 +3,9 @@ package org.app.domain.services;
 import java.util.Date;
 
 import org.app.domain.AggregateView;
+import org.app.domain.Proiect;
+import org.app.domain.Status;
+import org.app.domain.User;
 
 /*
  * Business Workflow Steps/Actions:
@@ -13,12 +16,9 @@ import org.app.domain.AggregateView;
 public interface IBusinessWorkflowService {
 
 	// (1) Start workflow
-	Integer startWorkflow(String rootName, Date startDate);
+	Integer startWorkflow(Integer id, Status status, Proiect proiect, User user, Date deadline, String titlu, String descriere, String tipFeedback);
 
 	// (2) Update Aggregate
 	Integer updateAggregate(Integer rootId);
-
-	// (3) Get Aggregate summary data
-	AggregateView getAggregateSummaryData(Integer rootId);
 
 }
