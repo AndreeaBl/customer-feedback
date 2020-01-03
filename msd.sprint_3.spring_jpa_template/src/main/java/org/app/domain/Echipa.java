@@ -1,8 +1,5 @@
 package org.app.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,8 +8,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
-import javax.persistence.OneToMany;
-import static javax.persistence.CascadeType.ALL;
 
 @Entity
 public class Echipa {
@@ -24,57 +19,12 @@ public class Echipa {
 	private String denumireEchipa;
 	private String descriereEchipa;
 	private String tipEchipa;
-
-	@OneToMany(mappedBy = "echipa", cascade = ALL)
-	private List<User> userList = new ArrayList<>();
+	//PE NET ASA AM GASIT PENTRU RELATIE DE AGREGARE ECHIPA-USER. IS IT OK?
+	//PENTRU -private User user- NU A FOST FACUT GET-UL SI SET-UL
+	//https://stackoverflow.com/questions/38311717/aggregation-relationship-via-jpa-annotations
+	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE})
+	private User user;
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((denumireEchipa == null) ? 0 : denumireEchipa.hashCode());
-		result = prime * result + ((descriereEchipa == null) ? 0 : descriereEchipa.hashCode());
-		result = prime * result + ((idEchipa == null) ? 0 : idEchipa.hashCode());
-		result = prime * result + ((tipEchipa == null) ? 0 : tipEchipa.hashCode());
-		result = prime * result + ((userList == null) ? 0 : userList.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Echipa other = (Echipa) obj;
-		if (denumireEchipa == null) {
-			if (other.denumireEchipa != null)
-				return false;
-		} else if (!denumireEchipa.equals(other.denumireEchipa))
-			return false;
-		if (descriereEchipa == null) {
-			if (other.descriereEchipa != null)
-				return false;
-		} else if (!descriereEchipa.equals(other.descriereEchipa))
-			return false;
-		if (idEchipa == null) {
-			if (other.idEchipa != null)
-				return false;
-		} else if (!idEchipa.equals(other.idEchipa))
-			return false;
-		if (tipEchipa == null) {
-			if (other.tipEchipa != null)
-				return false;
-		} else if (!tipEchipa.equals(other.tipEchipa))
-			return false;
-		if (userList == null) {
-			if (other.userList != null)
-				return false;
-		} else if (!userList.equals(other.userList))
-			return false;
-		return true;
-	}
 	public Integer getIdEchipa() {
 		return idEchipa;
 	}
